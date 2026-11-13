@@ -396,6 +396,20 @@ def results_page(state:State)->Page:
         LineBreak(),
         Text("Heat per Mole of Product: " + str(state.heat_per_mole)+ "kJ/mol")
              ])
+@route
+def reset(state:State)->Page:
+    state.reaction_equation=""
+    state.chemicals=[]
+    state.product_actual_mass=0.0
+    state.delta_h=0.0
+    state.limiting_reactant=[]
+    state.theoretical_yield=0.0
+    state.percent_yield=0.0
+    state.heat_per_mole=0.0
+    state.reaction_type=""
+    state.product=Chemical("",1,0.0,0.0,"product",0.0)
+
+    return index(state)
 
 
 start_server(State("",[],0.0,0.0,[],0.0,0.0,0.0,"",Chemical("",1,0.0,0.0,"product",0.0)))
